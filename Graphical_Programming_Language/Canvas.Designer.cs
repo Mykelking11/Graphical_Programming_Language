@@ -94,9 +94,9 @@
             // 
             ClearBtn.BackColor = Color.Red;
             ClearBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            ClearBtn.Location = new Point(128, 437);
+            ClearBtn.Location = new Point(121, 437);
             ClearBtn.Name = "ClearBtn";
-            ClearBtn.Size = new Size(103, 30);
+            ClearBtn.Size = new Size(110, 30);
             ClearBtn.TabIndex = 4;
             ClearBtn.Text = "Clear";
             ClearBtn.UseVisualStyleBackColor = false;
