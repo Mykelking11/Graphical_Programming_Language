@@ -139,6 +139,8 @@
             pictureBox.Size = new Size(637, 500);
             pictureBox.TabIndex = 8;
             pictureBox.TabStop = false;
+            pictureBox.Paint += pictureBox_Paint;
+            pictureBox.MouseMove += pictureBox_MouseMove_1;
             // 
             // Canvas
             // 
