@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Graphical_Programming_Language")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f54db42ee2e35cff38db91734415beadc1a4b197")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae1ec620ba5b0dd8153893c3a7f42934723804e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Graphical_Programming_Language")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Graphical_Programming_Language")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
