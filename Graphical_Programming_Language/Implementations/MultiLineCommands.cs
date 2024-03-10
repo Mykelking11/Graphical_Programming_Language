@@ -73,6 +73,9 @@ namespace Graphical_Programming_Language.Implementations
                 // Check if the line represents a recognized command
                 if (IsRecognizedCommand(line))
                 {
+                    // Substitute variable values into the command
+                    line = SubstituteVariableValues(line, variables);
+
                     // Invoke the command on the canvas
                     canvas.Invoke((MethodInvoker)delegate
                     {
@@ -147,6 +150,10 @@ namespace Graphical_Programming_Language.Implementations
                 while (currentLine < endLoopLine)
                 {
                     string loopLine = lines[currentLine].Trim();
+
+                    // Substitute variable values into the command
+                    loopLine = SubstituteVariableValues(loopLine, variables);
+
                     if (IsRecognizedCommand(loopLine))
                     {
                         // Ensure that UI updates are done on the UI thread
@@ -217,6 +224,10 @@ namespace Graphical_Programming_Language.Implementations
                 while (currentLine < endIfLine)
                 {
                     string ifLine = lines[currentLine].Trim();
+
+                    // Substitute variable values into the command
+                    ifLine = SubstituteVariableValues(ifLine, variables);
+
                     if (IsRecognizedCommand(ifLine))
                     {
                         // Invoke the command on the canvas
@@ -275,44 +286,58 @@ namespace Graphical_Programming_Language.Implementations
         /// <returns>True if the condition is true; otherwise, false.</returns>
         private bool EvaluateCondition(string condition, Dictionary<string, int> variables)
         {
-            // Basic implementation of condition evaluation
-            // This needs to be expanded for more complex conditions
+            string[] parts;
+            if (condition.Contains("!="))
+            {
+                parts = condition.Split(new[] { '!', '=' }, StringSplitOptions.RemoveEmptyEntries);
+            }
+            else
+            {
+                parts = condition.Split(new[] { '<', '>', '=' }, StringSplitOptions.RemoveEmptyEntries);
+            }
 
-            // Split the condition to extract its parts
-            string[] parts = condition.Split(new[] { '<', '>', '=', '!' }, StringSplitOptions.RemoveEmptyEntries);
-
-            // Ensure that the condition has two parts
             if (parts.Length == 2)
             {
                 string variableName = parts[0].Trim();
+                string valuePart = parts[1].Trim();
 
-                // Check if the variable exists in the dictionary and is a valid integer
-                if (variables.TryGetValue(variableName, out int variableValue) && int.TryParse(parts[1].Trim(), out int conditionValue))
+                if (variables.TryGetValue(variableName, out int variableValue))
                 {
-                    // Evaluate the condition based on the operator
-                    if (condition.Contains("<"))
+                    if (int.TryParse(valuePart, out int conditionValue))
                     {
-                        return variableValue < conditionValue;
+                        if (condition.Contains("<"))
+                        {
+                            return variableValue < conditionValue;
+                        }
+                        else if (condition.Contains(">"))
+                        {
+                            return variableValue > conditionValue;
+                        }
+                        else if (condition.Contains("="))
+                        {
+                            return variableValue == conditionValue;
+                        }
+                        else if (condition.Contains("!="))
+                        {
+                            return variableValue != conditionValue;
+                        }
                     }
-                    else if (condition.Contains(">"))
+                    else
                     {
-                        return variableValue > conditionValue;
-                    }
-                    else if (condition.Contains("=="))
-                    {
-                        return variableValue == conditionValue;
-                    }
-                    else if (condition.Contains("!="))
-                    {
-                        return variableValue != conditionValue;
+                        MessageBox.Show($"Invalid number format in condition: {valuePart}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                else
+                {
+                    MessageBox.Show($"Variable '{variableName}' is not defined.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-
-            // If any condition is not met, return false
+            else
+            {
+                MessageBox.Show($"Invalid condition format: {condition}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             return false;
         }
-
 
 
         /// <summary>
@@ -330,6 +355,26 @@ namespace Graphical_Programming_Language.Implementations
 
             // Check if the command is recognized
             return recognizedCommands.Contains(command);
+        }
+
+
+        private string SubstituteVariableValues(string line, Dictionary<string, int> variables)
+        {
+            // Split the line into tokens
+            string[] tokens = line.Split(' ');
+
+            // Iterate through tokens to check for variables
+            for (int i = 1; i < tokens.Length; i++) // Start from index 1 to skip the command
+            {
+                if (variables.ContainsKey(tokens[i])) // Check if the token is a variable
+                {
+                    // Replace the variable with its value
+                    tokens[i] = variables[tokens[i]].ToString();
+                }
+            }
+
+            // Reconstruct the line with substituted variable values
+            return string.Join(" ", tokens);
         }
 
     }
