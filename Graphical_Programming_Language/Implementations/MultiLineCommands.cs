@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,23 +50,21 @@ namespace Graphical_Programming_Language.Implementations
                     continue;
                 }
 
-                // Check if the line starts with "While" indicating a while loop
-                if (line.StartsWith("While"))
+                if (line.Trim().StartsWith("while", StringComparison.OrdinalIgnoreCase))
                 {
                     currentLine = ExecuteWhileLoop(lines, currentLine, variables);
                     continue;
                 }
 
-                // Check if the line starts with "If" indicating an if statement
                 if (line.StartsWith("If"))
                 {
                     currentLine = ExecuteIfStatement(lines, currentLine, variables);
                     continue;
                 }
 
-                // Check if the line is an "Endif" statement
-                if (line == "Endif")
+                if (line.Trim().Equals("endif", StringComparison.OrdinalIgnoreCase))
                 {
+                    // Do nothing; Endif is handled within ExecuteIfStatement
                     currentLine++;
                     continue;
                 }
@@ -110,18 +109,49 @@ namespace Graphical_Programming_Language.Implementations
             if (parts.Length == 2)
             {
                 string variableName = parts[0].Trim();
-                if (int.TryParse(parts[1].Trim(), out int value))
+                string value = parts[1].Trim();
+
+                if (value.EndsWith("++"))
                 {
-                    variables[variableName] = value;
+                    value = value.TrimEnd('+');
+                    if (variables.TryGetValue(value, out int previousValue))
+                    {
+                        variables[variableName] = previousValue + 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Variable '{value}' not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (value.Contains("+") || value.Contains("-") || value.Contains("*") || value.Contains("/"))
+                {
+                    // Perform arithmetic operation
+                    int result = EvaluateArithmeticOperation(value, variables);
+                    if (result != int.MinValue)
+                    {
+                        variables[variableName] = result;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Error evaluating arithmetic expression: {value}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (int.TryParse(value, out int numericValue))
+                {
+                    variables[variableName] = numericValue;
+                }
+                else if (variables.TryGetValue(value, out int variableValue))
+                {
+                    variables[variableName] = variableValue;
                 }
                 else
                 {
-                    MessageBox.Show($"Invalid number format in assignment: {line}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Invalid assignment: {line}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show($"Invalid assignment format: {line}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Invalid assignment: {line}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -174,11 +204,9 @@ namespace Graphical_Programming_Language.Implementations
                 // Reset currentLine to start of loop for next iteration
                 currentLine = startLine + 1;
 
-                // Re-evaluate the condition with updated variables
-                if (!EvaluateCondition(condition, variables))
-                {
-                    break;
-                }
+                // Update the condition with the latest variable values
+                condition = lines[startLine].Substring(6).Trim();
+                condition = SubstituteVariableValues(condition, variables);
             }
 
             // Return the line number after the "Endloop" statement
@@ -187,12 +215,26 @@ namespace Graphical_Programming_Language.Implementations
 
 
 
+        private int EvaluateArithmeticOperation(string expression, Dictionary<string, int> variables)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                var result = dt.Compute(expression, "");
+                return Convert.ToInt32(result);
+            }
+            catch (Exception)
+            {
+                return int.MinValue;
+            }
+        }
+
 
         private int FindEndLoopLine(string[] lines, int startLine)
         {
             for (int i = startLine + 1; i < lines.Length; i++)
             {
-                if (lines[i].Trim() == "Endloop")
+                if (lines[i].Trim().Equals("endloop", StringComparison.OrdinalIgnoreCase))
                 {
                     return i;
                 }
@@ -262,7 +304,7 @@ namespace Graphical_Programming_Language.Implementations
             for (int i = startLine + 1; i < lines.Length; i++)
             {
                 // Check if the current line is the "Endif" statement
-                if (lines[i].Trim() == "Endif")
+                if (lines[i].Trim().Equals("endif", StringComparison.OrdinalIgnoreCase))
                 {
                     // Return the line number of the "Endif" statement
                     return i;

@@ -158,6 +158,7 @@
             Controls.Add(runBtn);
             Name = "Canvas";
             Text = "Graphical Programming";
+            Load += Canvas_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();

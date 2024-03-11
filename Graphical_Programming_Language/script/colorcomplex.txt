@@ -1,0 +1,17 @@
+radius = 20
+width  = 20
+height = 50
+count =1
+fill on
+while count < 10
+pen blue
+circle radius
+radius = radius + 10
+pen red
+triangle height
+width = width + 10
+height = height + 10
+pen brown
+rectangle width height
+count = count + 1
+endloop

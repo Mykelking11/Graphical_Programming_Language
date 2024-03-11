@@ -1,0 +1,12 @@
+radius = 20
+width  = 20
+height = 20
+count =1
+while count < 10
+circle radius
+radius = radius + 10
+triangle height
+width = width + 10
+height = height + 10
+count = count + 1
+endloop

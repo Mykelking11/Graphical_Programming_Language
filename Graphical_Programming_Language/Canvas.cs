@@ -167,6 +167,11 @@ namespace Graphical_Programming_Language
             e.Graphics.FillEllipse(Brushes.Red, x, y, dotSize, dotSize);
         }
 
+        private void Canvas_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
 
         /// <summary>
