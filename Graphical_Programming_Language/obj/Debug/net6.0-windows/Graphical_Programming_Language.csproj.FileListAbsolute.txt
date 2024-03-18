@@ -1,8 +1,3 @@
-C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.exe
-C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.deps.json
-C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.runtimeconfig.json
-C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.dll
-C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.pdb
 C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj\Debug\net6.0-windows\Graphical_Programming_Language.Canvas.resources
 C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj\Debug\net6.0-windows\Graphical_Programming_Language.csproj.GenerateResource.cache
 C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj\Debug\net6.0-windows\Graphical_Programming_Language.GeneratedMSBuildEditorConfig.editorconfig
@@ -10,6 +5,11 @@ C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj
 C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj\Debug\net6.0-windows\Graphical_Programming_Language.AssemblyInfo.cs
 C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj\Debug\net6.0-windows\Graphical_Programming_Language.csproj.CoreCompileInputs.cache
 C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj\Debug\net6.0-windows\Graphical_Programming_Language.sourcelink.json
+C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.exe
+C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.deps.json
+C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.runtimeconfig.json
+C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.dll
+C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\bin\Debug\net6.0-windows\Graphical_Programming_Language.pdb
 C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj\Debug\net6.0-windows\Graphical_Programming_Language.dll
 C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj\Debug\net6.0-windows\refint\Graphical_Programming_Language.dll
 C:\Users\alabi\Graphical_Programming_Language\Graphical_Programming_Language\obj\Debug\net6.0-windows\Graphical_Programming_Language.pdb

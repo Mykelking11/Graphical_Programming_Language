@@ -17,6 +17,6 @@ namespace Graphical_Programming_Language.Interface
         /// <param name="shape">The Graphics object to perform drawing operations.</param>
         /// <param name="arguments">An array of arguments passed to the command.</param>
         /// <param name="canvas">The Canvas object representing the drawing surface.</param>
-        void Execute(Graphics shape, string[] arguments, Canvas canvas);
+        void Execute(Graphics shape, string[] arguments, ICanvas canvas);
     }
 }

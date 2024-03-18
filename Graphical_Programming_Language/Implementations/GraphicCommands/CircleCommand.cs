@@ -9,7 +9,7 @@ namespace Graphical_Programming_Language.Implementations.GraphicCommands
     public class CircleCommand : IGraphicsCommand
     {
         /// <inheritdoc/>
-        public void Execute(Graphics graphics, string[] argument, Canvas canvas)
+        public void Execute(Graphics graphics, string[] argument, ICanvas canvas)
         {
             // Get current position, drawing pen, and command text box from the canvas
             Point currentPosition = canvas.CurrentPosition;
@@ -37,10 +37,10 @@ namespace Graphical_Programming_Language.Implementations.GraphicCommands
                 }
 
                 // Use Invoke to update the commandTextBox on the UI thread
-                commandTextBox.Invoke((MethodInvoker)delegate
-                {
-                    commandTextBox.Clear();
-                });
+                //commandTextBox.Invoke((MethodInvoker)delegate
+                //{
+                //    commandTextBox.Clear();
+                //});
             }
             else
             {

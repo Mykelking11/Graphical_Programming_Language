@@ -41,10 +41,10 @@ namespace Graphical_Programming_Language.Implementations.BasicCommands
             }
 
             // Use Invoke to update the commandTextBox on the UI thread
-            commandTextBox.Invoke((MethodInvoker)delegate
+          /*  commandTextBox.Invoke((MethodInvoker)delegate
             {
                 commandTextBox.Clear();
-            });
+            });*/
         }
     }
 }

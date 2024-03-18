@@ -1,8 +1,9 @@
 using Graphical_Programming_Language.Implementations;
+using Graphical_Programming_Language.Interface;
 
 namespace Graphical_Programming_Language
 {
-    public partial class Canvas : Form
+    public partial class Canvas : Form, ICanvas
     {
         private bool isFill = false;
         private Point Position = new Point(330, 250);
@@ -238,5 +239,6 @@ namespace Graphical_Programming_Language
             set { isFill = value; }
         }
 
+        public PictureBox PictureBox => throw new NotImplementedException();
     }
 }

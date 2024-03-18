@@ -18,10 +18,10 @@ namespace Graphical_Programming_Language.Implementations.BasicCommands
             canvas.FillColor = Color.Black;
 
             // Use Invoke to update the commandTextBox on the UI thread
-            commandTextBox.Invoke((MethodInvoker)delegate
+            /*commandTextBox.Invoke((MethodInvoker)delegate
             {
                 commandTextBox.Clear();
-            });
+            });*/
         }
     }
 }
